@@ -21,23 +21,56 @@
                     @endif
                     <div class="px-6 py-4">
                         <div class="font-bold text-xl mb-2 truncate">{{ $player['strPlayer'] }}</div>
-                        <p class="text-gray-700 dark:text-gray-300 text-base truncate">Nacionalidad:
-                            {{ $player['strNationality'] }}</p>
-                        <p class="text-gray-700 dark:text-gray-300 text-base truncate">Nacimiento:
-                            {{ $player['dateBorn'] }}</p>
-                        <p class="text-gray-700 dark:text-gray-300 text-base truncate">Equipo:
-                            @if ($player['strTeam'] === '_Retired Soccer')
-                                Retirado
-                            @else
-                                {{ $player['strTeam'] }}
-                            @endif
-                        </p>
+
+                        <div class="flex justify-between items-center mb-2">
+                            <div>
+                                <div class="flex items-center mb-1">
+                                    <div class="w-6 h-6 flex-shrink-0 mr-2">
+                                        <img src="{{ $player['flag'] }}" alt="{{ $player['strNationality'] }}"
+                                            class="object-contain w-full h-full"
+                                            title="{{ $player['strNationality'] }}">
+                                    </div>
+                                    <p class="text-gray-700 dark:text-gray-300 text-base truncate">
+                                        {{ $player['dateBorn'] . ' (' . $player['age'] . ')' }}</p>
+                                </div>
+                                <p class="text-gray-700 dark:text-gray-300 text-base truncate">
+                                    @if ($player['strTeam'] === '_Retired Soccer')
+                                        Retirado
+                                    @elseif($player['strTeam'] === '_Free Agent Soccer')
+                                        Agente libre
+                                    @elseif($player['strTeam'] === '_Deceased Soccer')
+                                        Fallecido
+                                    @else
+                                        {{ $player['strTeam'] }}
+                                    @endif
+                                </p>
+                            </div>
+                            <div>
+                                @if (!empty($player['equipment']['strEquipment']))
+                                    <img src="{{ $player['equipment']['strEquipment'] }}"
+                                        alt="{{ $player['strPlayer'] }}"
+                                        class="object-cover object-center aspect-square w-16"
+                                        title="{{ $player['equipment']['strSeason'] }}">
+                                @elseif($player['strTeam'] === '_Retired Soccer')
+                                    <img src="{{ asset('retired.png') }}" alt="Retirado" title="Retirado"
+                                        class="object-cover object-center w-16">
+                                @elseif($player['strTeam'] === '_Free Agent Soccer')
+                                    <img src="{{ asset('freeAgent.png') }}" alt="Agente libre" title="Agente libre"
+                                        class="object-cover object-center w-16">
+                                @elseif($player['strTeam'] === '_Deceased Soccer')
+                                    <img src="{{ asset('deceased.png') }}" alt="Fallecido" title="Fallecido"
+                                        class="object-cover object-center w-16">
+                                @else
+                                    <img src="{{ asset('jersey.png') }}" alt="Placeholder"
+                                        class="object-cover object-center w-16">
+                                @endif
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         @endforeach
     </div>
-
 
 
 
