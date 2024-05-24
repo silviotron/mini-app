@@ -71,8 +71,14 @@
             </div>
         @endforeach
     </div>
-
-
-
-
+    @if (!empty($players))
+        <form action="{{ route('saveResults') }}" method="POST">
+            @csrf
+            <input type="hidden" name="search" value="{{ $search }}">
+            @foreach ($players as $player)
+                <input type="hidden" name="players[]" value="{{ json_encode($player) }}">
+            @endforeach
+            <button type="submit" class="bg-[#76ABAE] px-4 py-2 rounded">Guardar Resultados</button>
+        </form>
+    @endif
 </x-app-layout>
