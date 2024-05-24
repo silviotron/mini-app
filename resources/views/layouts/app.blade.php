@@ -31,7 +31,7 @@
             <a class="relative block px-6 py-4 whitespace-nowrap transition hover:text-[#31363F]  dark:hover:text-[#76ABAE] {{ request()->routeIs('search') ? 'text-[#76ABAE]' : '' }}"
                 href="{{ route('search') }}">Buscar</a>
             <a class="relative block px-6 py-4 whitespace-nowrap transition hover:text-[#31363F]  dark:hover:text-[#76ABAE] {{ request()->routeIs('historial') ? 'text-[#76ABAE]' : '' }}"
-                href="{{ route('saves') }}">Guardadas</a>
+                href="{{ route('saves') }}">Guardados</a>
         </nav>
     </header>
 

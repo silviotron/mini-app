@@ -6,7 +6,21 @@
             <button type="submit" class="bg-[#76ABAE]  px-4 py-2 rounded">Buscar</button>
         </form>
     </div>
+    @if (session('success'))
+        <div class="flex justify-center mt-4 mb-4">
+            <div class="bg-green-200 text-green-700 px-4 py-2 rounded-md">
+                {{ session('success') }}
+            </div>
+        </div>
+    @elseif (session('error'))
+        <div class="flex justify-center mt-4 mb-4">
+            <div class="bg-red-200 text-red-700 px-4 py-2 rounded-md">
+                {{ session('error') }}
+            </div>
+        </div>
+    @endif
     <div class="mt-4 flex flex-wrap justify-center -mx-2">
+
         @foreach ($players as $player)
             <div class="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 px-2 mb-4">
                 <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md">
@@ -71,13 +85,9 @@
             </div>
         @endforeach
     </div>
-    @if (!empty($players))
+    @if (!empty($players) && !session('success'))
         <form action="{{ route('saveResults') }}" method="POST">
             @csrf
-            <input type="hidden" name="search" value="{{ $search }}">
-            @foreach ($players as $player)
-                <input type="hidden" name="players[]" value="{{ json_encode($player) }}">
-            @endforeach
             <button type="submit" class="bg-[#76ABAE] px-4 py-2 rounded">Guardar Resultados</button>
         </form>
     @endif
