@@ -3,7 +3,8 @@
         <form action="{{ route('search') }}" method="GET" class="flex items-center space-x-4">
             <input type="text" name="search" placeholder="Buscar jugador..."
                 class="flex-grow p-2 border rounded text-[#222831]" value="{{ old('search', $search) }}">
-            <button type="submit" class="bg-[#76ABAE]  px-4 py-2 rounded">Buscar</button>
+            <button type="submit"
+                class="bg-[#31363F] text-[#EEEEEE] dark:bg-[#76ABAE]  px-4 py-2 rounded">Buscar</button>
         </form>
     </div>
     @if (session('success'))
@@ -88,7 +89,8 @@
     @if (!empty($players) && !session('success'))
         <form action="{{ route('saveResults') }}" method="POST">
             @csrf
-            <button type="submit" class="bg-[#76ABAE] px-4 py-2 rounded">Guardar Resultados</button>
+            <button type="submit" class="bg-[#31363F] text-[#EEEEEE] dark:bg-[#76ABAE]  px-4 py-2 rounded">Guardar
+                Resultados</button>
         </form>
     @endif
 </x-app-layout>

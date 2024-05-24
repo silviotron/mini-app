@@ -10,7 +10,7 @@
                         <div class="mt-4 flex flex-wrap justify-center -mx-2">
                             @foreach ($save->results as $result)
                                 <div class="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 px-2 mb-4">
-                                    <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md">
+                                    <div class="bg-white dark:bg-[#31363F] rounded-lg overflow-hidden shadow-lg">
                                         @if (!empty($result->thumbnail))
                                             <div class="pb-1/1 bg-cover bg-center bg-no-repeat"
                                                 style="background-image: url('{{ $result->thumbnail }}/preview')">

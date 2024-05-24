@@ -18,25 +18,25 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="relative text-[#222831] dark:text-[#EEEEEE] bg-[#EEEEEE] dark:bg-[#222831] min-h-screen flex flex-col p-4">
 
-    <header class="flex items-center justify-center mb-4">
+    <header class="flex items-center justify-center mb-4 overflow-hidden">
         <nav
-            class="flex px-3 text-2xl font-medium  text-gray-600 dark:text-gray-200 justify-center items-center w-full bg-[#76ABAE] dark:bg-[#31363F] ">
-            <a class="relative block px-6 py-4 whitespace-nowrap transition hover:text-[#31363F]  dark:hover:text-[#76ABAE] {{ request()->routeIs('home') ? 'text-[#76ABAE]' : '' }}"
+            class="flex px-3 text-xl md:text-3xl font-medium  text-gray-600 dark:text-gray-200 justify-center items-center w-full bg-[#EEEEEE] dark:bg-[#222831] ">
+            <a class="relative block px-6 py-4 whitespace-nowrap transition hover:text-[#76ABAE] {{ request()->routeIs('home') ? 'text-[#76ABAE]' : '' }}"
                 href="{{ route('home') }}">Home</a>
-            <a class="relative block px-6 py-4 whitespace-nowrap transition hover:text-[#31363F]  dark:hover:text-[#76ABAE] {{ request()->routeIs('search') ? 'text-[#76ABAE]' : '' }}"
+            <a class="relative block px-6 py-4 whitespace-nowrap transition hover:text-[#76ABAE] {{ request()->routeIs('search') ? 'text-[#76ABAE]' : '' }}"
                 href="{{ route('search') }}">Buscar</a>
-            <a class="relative block px-6 py-4 whitespace-nowrap transition hover:text-[#31363F]  dark:hover:text-[#76ABAE] {{ request()->routeIs('historial') ? 'text-[#76ABAE]' : '' }}"
+            <a class="relative block px-6 py-4 whitespace-nowrap transition hover:text-[#76ABAE] {{ request()->routeIs('saves') ? 'text-[#76ABAE]' : '' }}"
                 href="{{ route('saves') }}">Guardados</a>
         </nav>
     </header>
 
 
-    <main class="p-4 bg-[#31363F] flex-grow">
+    <main class="p-4  dark:bg-[#222831] flex-grow">
         {{ $slot }}
     </main>
 </body>
