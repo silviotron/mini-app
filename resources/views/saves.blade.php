@@ -1,5 +1,8 @@
 <x-app-layout>
     <div class="mt-4 flex flex-wrap justify-center -mx-2">
+        @if ($saves->isEmpty())
+            <div class="text-center mt-28 text-gray-400 text-4xl">sin datos</div>
+        @endif
         @foreach ($saves as $save)
             <div class="w-full mb-4">
                 <div class="overflow-hidden mb-4">
@@ -18,8 +21,11 @@
                                                     class="object-cover object-center aspect-square w-full">
                                             </div>
                                         @else
-                                            <img src="{{ asset('player.png') }}" alt="Placeholder"
-                                                class="object-cover object-center">
+                                            <div class="pb-1/1">
+                                                <img src="{{ asset('player.png') }}" alt="Placeholder"
+                                                    class="object-cover object-center aspect-square w-full">
+
+                                            </div>
                                         @endif
                                         <div class="px-6 py-4">
                                             <div class="font-bold text-xl mb-2 truncate">{{ $result->name }}</div>
@@ -34,7 +40,12 @@
                                                                 title="{{ $result->nationality }}">
                                                         </div>
                                                         <p class="text-gray-700 dark:text-gray-300 text-base truncate">
-                                                            {{ $result->date . ' (' . $result->age . ')' }}</p>
+                                                            @if ($result->age !== null)
+                                                                {{ $result->date . ' (' . $result->age . ')' }}
+                                                            @else
+                                                                {{ $result->date }}
+                                                            @endif
+                                                        </p>
                                                     </div>
                                                     <p class="text-gray-700 dark:text-gray-300 text-base truncate">
                                                         @if ($result->team === '_Retired Soccer')

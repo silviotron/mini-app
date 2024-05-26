@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -12,6 +11,9 @@ class SearchController extends Controller
 
     public function search(Request $request)
     {
+        if (!isset($request->search)) {
+            return view('search');
+        }
         try {
             $search = $request->search;
 
@@ -35,7 +37,11 @@ class SearchController extends Controller
             foreach ($players as $index => $player) {
                 //calcular edad
                 $dateOfBirth = $player['dateBorn'];
-                $age = $this->calculateAge($dateOfBirth);
+                if ($player['strTeam'] === '_Deceased Soccer') {
+                    $age = null;
+                } else {
+                    $age = $this->calculateAge($dateOfBirth);
+                }
                 $players[$index]['age'] = $age;
 
                 //obtener bandera
@@ -68,8 +74,8 @@ class SearchController extends Controller
                 }
             }
 
-            Session::put('players', $players);
-            Session::put('search', $search);
+            session(['players' => $players]);
+            session(['search' => $search]);
 
             return view('search', compact('players', 'search'));
         } catch (\Exception $e) {
